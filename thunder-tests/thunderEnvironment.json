@@ -1,1 +1,25 @@
-[]
+[
+  {
+    "_id": "948339b2-8e8e-48bb-8ef8-cb54b93e8e98",
+    "name": "dev",
+    "default": true,
+    "sortNum": 10000,
+    "created": "2022-11-16T18:35:33.129Z",
+    "modified": "2022-11-16T18:48:58.785Z",
+    "data": [
+      {
+        "name": "dev_localhost",
+        "value": "http://localhost:5000/api/v1"
+      }
+    ]
+  },
+  {
+    "_id": "7531889c-138e-4980-88ce-aff039692237",
+    "name": "prod",
+    "default": false,
+    "sortNum": 20000,
+    "created": "2022-11-16T18:49:08.439Z",
+    "modified": "2022-11-16T18:49:08.439Z",
+    "data": []
+  }
+]

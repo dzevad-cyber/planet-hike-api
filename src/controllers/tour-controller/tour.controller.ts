@@ -16,6 +16,9 @@ export const createTour: RequestHandler = async (req, res) => {
       data: { tour: newTour },
     });
   } catch (err: any) {
-    console.log(err.message);
+    res.status(400).json({
+      status: 'fail',
+      data: { err },
+    });
   }
 };
