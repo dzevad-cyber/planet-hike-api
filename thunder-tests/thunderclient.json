@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "da9ad3cd-e22e-4ae7-824f-4aedf7fb4907",
+    "colId": "26814b96-f35f-467a-8b58-d328436438f5",
+    "containerId": "",
+    "name": "get all tours",
+    "url": "http://localhost:5000/api/v1/tours",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-11-16T18:11:15.781Z",
+    "modified": "2022-11-16T18:11:28.460Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  }
+]
