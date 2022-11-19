@@ -9,7 +9,7 @@ type Cb = (req: Req, res: Res, next: NextFn) => Promise<void>;
 type HandleAsync = (cb: Cb) => RequestHandler;
 
 const handleAsync: HandleAsync = (cb: Cb): RequestHandler => {
-  return (req, res, next) => cb(req, res, next).catch(next);
+  return (req, res, next) => cb(req, res, next).catch();
 };
 
 export default handleAsync;

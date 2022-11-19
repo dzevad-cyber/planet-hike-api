@@ -1,8 +1,10 @@
 import { model, Schema } from 'mongoose';
+import slugify from 'slugify';
 import ITour from './tour.model.interface';
 
 const tourSchema = new Schema<ITour>(
   {
+    // required properties
     name: {
       type: String,
       required: [true, 'A tour must have a name'],
@@ -37,6 +39,7 @@ const tourSchema = new Schema<ITour>(
       trim: true,
       required: [true, 'A tour must have a description'],
     },
+    // optional properties
     slug: String,
     ratingsAverage: {
       type: Number,
@@ -79,6 +82,23 @@ const tourSchema = new Schema<ITour>(
     timestamps: true,
   }
 );
+
+tourSchema.virtual('durationWeeks').get(function () {
+  return this.duration / 7;
+});
+
+tourSchema.pre(/^find/, async function () {
+  this.find({ secretTour: false });
+});
+
+tourSchema.pre('save', async function () {
+  this.slug = this.name.split(' ').join('?').toLowerCase();
+});
+
+tourSchema.pre('aggregate', async function () {
+  this.pipeline().unshift({ $match: { secretTour: false } });
+  console.log(this.pipeline());
+});
 
 const Tour = model<ITour>('Tour', tourSchema);
 export default Tour;

@@ -11,10 +11,30 @@ export const getAllTours = handleAsync(async (req, res, next) => {
 
   const tours = await features.query;
 
+  tours.fullName = 'Jean-Luc Picard';
+
   res.status(200).json({
     status: 'success',
     count: tours.length,
     data: { tours },
+  });
+});
+
+export const createTour = handleAsync(async (req, res, next) => {
+  const tour = await Tour.create(req.body);
+
+  res.status(201).json({
+    status: 'success',
+    data: { tour },
+  });
+});
+
+export const getTour = handleAsync(async (req, res, next) => {
+  const tour = await Tour.findById(req.params.id);
+
+  res.status(200).json({
+    status: 'success',
+    data: { tour },
   });
 });
 

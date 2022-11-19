@@ -9,11 +9,11 @@ app.use(express.json());
 
 app.use('/api/v1', router);
 
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  res.status(500).json({
-    status: 'fail',
-    data: { err },
-  });
-});
+// app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+//   res.status(500).json({
+//     status: 'fail',
+//     data: { err },
+//   });
+// });
 
 export default app;
