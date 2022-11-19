@@ -8,7 +8,7 @@
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-11-16T18:11:15.781Z",
-    "modified": "2022-11-18T20:46:55.844Z",
+    "modified": "2022-11-19T21:45:21.411Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -37,11 +37,11 @@
     "colId": "26814b96-f35f-467a-8b58-d328436438f5",
     "containerId": "",
     "name": "GET tour",
-    "url": "{{dev_localhost}}/tours/6378ca5417ad7d07493d62e8",
+    "url": "{{dev_localhost}}/tours/5c88fa8cf4afda39709c2888",
     "method": "GET",
     "sortNum": 15000,
     "created": "2022-11-17T11:57:49.168Z",
-    "modified": "2022-11-19T12:30:11.958Z",
+    "modified": "2022-11-19T21:47:23.471Z",
     "headers": [],
     "params": [],
     "tests": []

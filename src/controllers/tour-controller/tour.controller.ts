@@ -1,5 +1,6 @@
 import Tour from '../../models/tour-model/tour.model.js';
 import ApiFeatures from '../../utils/apiFeatures.js';
+import AppError from '../../utils/appError.js';
 import handleAsync from '../../utils/handle.async.js';
 
 export const getAllTours = handleAsync(async (req, res, next) => {
@@ -29,8 +30,21 @@ export const createTour = handleAsync(async (req, res, next) => {
   });
 });
 
+export const deleteTour = handleAsync(async (req, res, next) => {
+  const tour = await Tour.findByIdAndDelete(req.params.id);
+
+  if (!tour) throw new AppError('Tour not found', 404);
+
+  res.status(200).json({
+    status: 'success',
+    data: { message: 'Tour deleted' },
+  });
+});
+
 export const getTour = handleAsync(async (req, res, next) => {
   const tour = await Tour.findById(req.params.id);
+
+  if (!tour) throw new AppError('Tour not found.', 404);
 
   res.status(200).json({
     status: 'success',
