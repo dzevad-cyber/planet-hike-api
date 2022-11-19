@@ -1,6 +1,7 @@
-import mongoose from 'mongoose';
+import { model, Schema } from 'mongoose';
+import ITour from './tour.model.interface';
 
-const tourSchema = new mongoose.Schema(
+const tourSchema = new Schema<ITour>(
   {
     name: {
       type: String,
@@ -11,7 +12,6 @@ const tourSchema = new mongoose.Schema(
       minlength: [10, 'A tour name must have more or equal then 10 characters'],
       // validate: [validator.isAlpha, 'Tour name must only contain characters']
     },
-    slug: String,
     duration: {
       type: Number,
       required: [true, 'A tour must have a duration'],
@@ -28,6 +28,16 @@ const tourSchema = new mongoose.Schema(
         message: 'Difficulty is either: easy, medium, difficult',
       },
     },
+    price: {
+      type: Number,
+      required: [true, 'A tour must have a price'],
+    },
+    summary: {
+      type: String,
+      trim: true,
+      required: [true, 'A tour must have a description'],
+    },
+    slug: String,
     ratingsAverage: {
       type: Number,
       default: 4.5,
@@ -38,24 +48,15 @@ const tourSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    price: {
-      type: Number,
-      required: [true, 'A tour must have a price'],
-    },
     priceDiscount: {
       type: Number,
       validate: {
-        validator: function (val: number) {
+        validator: function (this: ITour, val: number) {
           // this only points to current doc on NEW document creation
           return val < this.price;
         },
         message: 'Discount price ({VALUE}) should be below regular price',
       },
-    },
-    summary: {
-      type: String,
-      trim: true,
-      required: [true, 'A tour must have a description'],
     },
     description: {
       type: String,
@@ -66,11 +67,6 @@ const tourSchema = new mongoose.Schema(
       required: [true, 'A tour must have a cover image'],
     },
     images: [String],
-    createdAt: {
-      type: Date,
-      default: Date.now(),
-      select: false,
-    },
     startDates: [Date],
     secretTour: {
       type: Boolean,
@@ -79,9 +75,10 @@ const tourSchema = new mongoose.Schema(
   },
   {
     toJSON: { virtuals: true },
-    toObject: { virtuals: true },
+    toObject: { virtuals: true, versionKey: false },
+    timestamps: true,
   }
 );
 
-const Tour = mongoose.model('Tour', tourSchema);
+const Tour = model<ITour>('Tour', tourSchema);
 export default Tour;
