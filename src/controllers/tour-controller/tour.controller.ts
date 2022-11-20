@@ -1,6 +1,7 @@
 import Tour from '../../models/tour-model/tour.model.js';
 import ApiFeatures from '../../utils/apiFeatures.js';
 import AppError from '../../utils/appError.js';
+import { resJson } from '../../utils/response-handler/response.handler.js';
 import handleAsync from '../../utils/handle.async.js';
 
 export const getAllTours = handleAsync(async (req, res, next) => {
@@ -12,22 +13,13 @@ export const getAllTours = handleAsync(async (req, res, next) => {
 
   const tours = await features.query;
 
-  tours.fullName = 'Jean-Luc Picard';
-
-  res.status(200).json({
-    status: 'success',
-    count: tours.length,
-    data: { tours },
-  });
+  resJson(res, 200, { count: tours.length, tours });
 });
 
 export const createTour = handleAsync(async (req, res, next) => {
   const tour = await Tour.create(req.body);
 
-  res.status(201).json({
-    status: 'success',
-    data: { tour },
-  });
+  resJson(res, 201, { tour }, 'Tour successfully created.');
 });
 
 export const deleteTour = handleAsync(async (req, res, next) => {
@@ -35,21 +27,20 @@ export const deleteTour = handleAsync(async (req, res, next) => {
 
   if (!tour) throw new AppError('Tour not found', 404);
 
-  res.status(200).json({
-    status: 'success',
-    data: { message: 'Tour deleted' },
-  });
+  resJson(res, 200, { tour }, 'Tour deleted');
 });
 
 export const getTour = handleAsync(async (req, res, next) => {
   const tour = await Tour.findById(req.params.id);
+  // console.log(tour);
 
-  if (!tour) throw new AppError('Tour not found.', 404);
+  // if (!tour) throw new AppError('Tour not found.', 404);
 
-  res.status(200).json({
-    status: 'success',
-    data: { tour },
-  });
+  // resJson(res, 200, { tour });
+  // res.status(200).json({
+  //   status: 'success',
+  //   data: { tour },
+  // });
 });
 
 export const getTop5Tours = handleAsync(async (req, res, next) => {

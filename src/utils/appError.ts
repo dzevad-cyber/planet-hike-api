@@ -1,5 +1,5 @@
 export default class AppError extends Error {
-  public status: string;
+  public status: 'fail' | 'error';
   readonly isOperational: boolean;
   constructor(public message: string, public statusCode: number) {
     super(message);

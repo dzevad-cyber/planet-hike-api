@@ -8,7 +8,7 @@
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-11-16T18:11:15.781Z",
-    "modified": "2022-11-19T21:45:21.411Z",
+    "modified": "2022-11-20T12:16:00.602Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -22,12 +22,12 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-11-16T18:35:15.444Z",
-    "modified": "2022-11-19T12:21:40.993Z",
+    "modified": "2022-11-20T21:48:03.341Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"The Snow Adventurer TEST 13\",\n  \"duration\": 4,\n  \"maxGroupSize\": 10,\n  \"difficulty\": \"difficult\",\n  \"ratingsAverage\": 4.5,\n  \"ratingsQuantity\": 6,\n  \"price\": 997,\n  \"summary\": \"Exciting adventure in the snow with snowboarding and skiing\",\n  \"description\": \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!\\nDolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit!\",\n  \"imageCover\": \"tour-3-cover.jpg\",\n  \"images\": [\n    \"tour-3-1.jpg\",\n    \"tour-3-2.jpg\",\n    \"tour-3-3.jpg\"\n  ],\n  \"createdAt\": \"2022-11-16T21:56:20.942Z\",\n  \"startDates\": [\n    \"2022-01-05T10:00:00.000Z\",\n    \"2022-02-12T10:00:00.000Z\",\n    \"2023-01-06T10:00:00.000Z\"\n  ],\n  \"secretTour\": true,\n  \"durationWeeks\": 0.5714285714285714,\n  \"id\": \"5c88fa8cf4afda39709c295a\"\n}",
+      "raw": "{\n  \"name\": \"The Snow Adventurer TEST 15\",\n  \"duration\": 4,\n  \"maxGroupSize\": 10,\n  \"difficulty\": \"ups\",\n  \"ratingsAverage\": 8,\n  \"ratingsQuantity\": 6,\n  \"price\": 997,\n  \"summary\": \"Exciting adventure in the snow with snowboarding and skiing\",\n  \"description\": \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!\\nDolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit!\",\n  \"imageCover\": \"tour-3-cover.jpg\",\n  \"images\": [\n    \"tour-3-1.jpg\",\n    \"tour-3-2.jpg\",\n    \"tour-3-3.jpg\"\n  ],\n  \"createdAt\": \"2022-11-16T21:56:20.942Z\",\n  \"startDates\": [\n    \"2022-01-05T10:00:00.000Z\",\n    \"2022-02-12T10:00:00.000Z\",\n    \"2023-01-06T10:00:00.000Z\"\n  ],\n  \"secretTour\": true,\n  \"durationWeeks\": 0.5714285714285714,\n  \"id\": \"5c88fa8cf4afda39709c295a\"\n}",
       "form": []
     },
     "tests": []
@@ -37,11 +37,11 @@
     "colId": "26814b96-f35f-467a-8b58-d328436438f5",
     "containerId": "",
     "name": "GET tour",
-    "url": "{{dev_localhost}}/tours/5c88fa8cf4afda39709c2888",
+    "url": "{{dev_localhost}}/tours/www",
     "method": "GET",
     "sortNum": 15000,
     "created": "2022-11-17T11:57:49.168Z",
-    "modified": "2022-11-19T21:47:23.471Z",
+    "modified": "2022-11-20T21:08:18.285Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -84,6 +84,20 @@
     "sortNum": 60000,
     "created": "2022-11-18T22:42:12.882Z",
     "modified": "2022-11-18T22:42:12.882Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "57c4522a-a53d-47d5-a7e1-443dc56fc8a1",
+    "colId": "26814b96-f35f-467a-8b58-d328436438f5",
+    "containerId": "",
+    "name": "DELETE tour",
+    "url": "{{dev_localhost}}/tours/637a262ad04b8d5ce978ab7e",
+    "method": "DELETE",
+    "sortNum": 80000,
+    "created": "2022-11-20T13:08:16.085Z",
+    "modified": "2022-11-20T13:11:03.202Z",
     "headers": [],
     "params": [],
     "tests": []

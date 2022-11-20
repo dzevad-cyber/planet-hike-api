@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv';
 dotenv.config(); // load env variables
 import express from 'express';
+import morgan from 'morgan';
 
 // local dependencies
 import errorHandler from './utils/error-handler/error.handler.js';
@@ -12,6 +13,7 @@ const app = express();
 
 // global middleware
 app.use(express.json());
+app.use(morgan('dev'));
 
 // rotues
 app.use('/api/v1', router);

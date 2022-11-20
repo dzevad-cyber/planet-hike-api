@@ -14,5 +14,6 @@ router
   .post(tourController.createTour);
 
 router.route('/:id').get(tourController.getTour);
+// .delete(tourController.deleteTour);
 
 export default router;

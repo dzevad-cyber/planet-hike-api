@@ -1,34 +1,55 @@
 import { ErrorRequestHandler, Response } from 'express';
-import AppError from '../appError';
+import { json } from 'stream/consumers';
+import AppError from '../appError.js';
+import { resJson } from '../response-handler/response.handler.js';
 
-const sendErrorDev = (err: AppError, res: Response): void => {
-  res.status(err.statusCode).json({
-    status: err.status,
-    message: err.message,
-    stackTrace: err.stack,
-    error: err,
-  });
-};
-
-const sendErrorProd = (err: AppError, res: Response) => {
-  res.status(err.statusCode).json({
-    status: err.status,
-    message: err.message,
-  });
+const sendErrorProd = (err: any, res: Response) => {
+  if (err.isOperational) {
+    resJson(res, err.statusCode, { message: err.message });
+  } else {
+    console.error('SERVER ERROR ', err);
+    resJson(res, 500, null, 'Something went wrong');
+  }
 };
 
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
-  const { statusCode, status, message } = err;
-  res.status = status;
-
   if (
     process.env.NODE_ENV === 'development' ||
     process.env.NODE_ENV === 'test'
   ) {
-    res.json({ status, message, stack: err.stack, error: err });
+    console.log('DEV ', err);
+    resJson(
+      res,
+      err.statusCode,
+      { ...JSON.parse(JSON.stringify(err)), stackTrace: err.stack },
+      err.message
+    );
   }
 
-  if (process.env.NODE_ENV === 'production') res.json({ status, message });
+  if (process.env.NODE_ENV === 'production') {
+    console.log('ERROR ', JSON.parse(JSON.stringify(err)));
+    let _err = { ...err };
+
+    if (err.name === 'CastError') {
+      _err = new AppError(`Invalid ${err.path}: ${err.value}`, 400);
+    }
+
+    if (err.code === 11000) {
+      _err = new AppError(`${err.keyValue.name} already exist`, 400);
+    }
+
+    if (err.name === 'ValidationError') {
+      let validationErrors: Record<string, string> = { message: err._message };
+
+      for (const key in err.errors) {
+        validationErrors[key] = err.errors[key].message;
+      }
+
+      _err = new AppError(JSON.stringify(validationErrors), 400);
+    }
+
+    sendErrorProd(_err, res);
+  }
 };
 
 export default errorHandler;
